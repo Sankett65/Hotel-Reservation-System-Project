@@ -53,8 +53,6 @@ public class Hotel {
 
     public int rateOfHotel(List<String> list) {
         HotelReservation hotelReservation = new HotelReservation();
-//        List<String> list = hotelReservation.toGetDay();
-//        System.out.println(list);
 
         int sum =0;
         for (int j = 0; j < list.size(); j++) {
