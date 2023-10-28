@@ -106,6 +106,21 @@ public class HotelReservation {
     }
 
 
+    public void bestRated(){
+        int rating = Integer.MIN_VALUE;
+        for (Hotel hotel : hotelList) {
+            if (hotel.getHotelRate() > rating) {
+                rating = hotel.getHotelRate();
+
+            }
+        }
+
+        int finalRating = rating;
+        System.out.println();
+        hotelList.stream().filter(m -> m.getHotelRate()== finalRating).forEach(System.out::println);
+    }
+
+
     public void printHotelList(){
         for (Hotel h : hotelList){
             System.out.println(h);
@@ -132,9 +147,9 @@ public class HotelReservation {
         hotelReservation.printHotelList();
 
         hotelReservation.minimumRates(hotelReservation.toGetDay());
-        //  Finding for on one Weekday and one Weekend
-        hotelReservation.minimumRates(hotelReservation.toGetDay());
+      
         hotelReservation.cheapestRated();
+        hotelReservation.bestRated();
 
     }
 }
