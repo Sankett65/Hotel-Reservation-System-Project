@@ -4,17 +4,12 @@ import java.util.List;
 
 public class Hotel {
     private String hotelName;
-    private int weekdaysRateForRegularCustomer;
-    private int weekendsRateForRegularCustomer;
+    private int rateForRegularCustomer;
 
-    public Hotel(String hotelName, int weekdaysRateForRegularCustomer, int weekendsRateForRegularCustomer) {
+
+    public Hotel(String hotelName, int rateForRegularCustomer) {
         this.hotelName = hotelName;
-        this.weekdaysRateForRegularCustomer = weekdaysRateForRegularCustomer;
-        this.weekendsRateForRegularCustomer = weekendsRateForRegularCustomer;
-    }
-
-    public Hotel() {
-
+        this.rateForRegularCustomer = rateForRegularCustomer;
     }
 
     public String getHotelName() {
@@ -26,27 +21,19 @@ public class Hotel {
     }
 
     public int getWeekdaysRateForRegularCustomer() {
-        return weekdaysRateForRegularCustomer;
+        return rateForRegularCustomer;
     }
 
     public void setWeekdaysRateForRegularCustomer(int weekdaysRateForRegularCustomer) {
-        this.weekdaysRateForRegularCustomer = weekdaysRateForRegularCustomer;
+        this.rateForRegularCustomer = weekdaysRateForRegularCustomer;
     }
 
-    public int getWeekendsRateForRegularCustomer() {
-        return weekendsRateForRegularCustomer;
-    }
-
-    public void setWeekendsRateForRegularCustomer(int weekendsRateForRegularCustomer) {
-        this.weekendsRateForRegularCustomer = weekendsRateForRegularCustomer;
-    }
 
     @Override
     public String toString() {
         return "Hotel{" +
                 "hotelName='" + hotelName + '\'' +
-                ", weekdaysRateForRegularCustomer=" + weekdaysRateForRegularCustomer + "$" +
-                ", weekendsRateForRegularCustomer=" + weekendsRateForRegularCustomer + "$" +
+                ", RateForRegularCustomer=" + rateForRegularCustomer + "$" +
                 '}';
     }
 
@@ -61,10 +48,7 @@ public class Hotel {
                 return 0;
 
             if (s.equals("MONDAY") || s.equals("TUESDAY") || s.equals("WEDNESDAY") || s.equals("THURSDAY") || s.equals("FRIDAY")) {
-                sum = sum + this.weekdaysRateForRegularCustomer;
-
-            } else {
-                sum = sum + this.weekendsRateForRegularCustomer;
+                sum = sum + this.rateForRegularCustomer;
 
             }
         }
