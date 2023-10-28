@@ -27,9 +27,9 @@ public class HotelReservation {
 
         HotelReservation hotelReservation = new HotelReservation();
 
-        Hotel hotel1= new Hotel("Lakewood",110);
-        Hotel hotel2= new Hotel("Bridgewood",160);
-        Hotel hotel3= new Hotel("Ridgewood",220);
+        Hotel hotel1= new Hotel("Lakewood",110,90);
+        Hotel hotel2= new Hotel("Bridgewood",160,150);
+        Hotel hotel3= new Hotel("Ridgewood",220,150);
 
         //   Adding the Hotels to Hotel Reservation Class
         hotelReservation.addHotel(hotel1);
