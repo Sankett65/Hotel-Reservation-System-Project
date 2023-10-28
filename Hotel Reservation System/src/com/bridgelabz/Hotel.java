@@ -1,5 +1,7 @@
 package com.bridgelabz;
 
+import java.util.List;
+
 public class Hotel {
     private String hotelName;
     private int weekdaysRateForRegularCustomer;
@@ -9,6 +11,10 @@ public class Hotel {
         this.hotelName = hotelName;
         this.weekdaysRateForRegularCustomer = weekdaysRateForRegularCustomer;
         this.weekendsRateForRegularCustomer = weekendsRateForRegularCustomer;
+    }
+
+    public Hotel() {
+
     }
 
     public String getHotelName() {
@@ -39,8 +45,33 @@ public class Hotel {
     public String toString() {
         return "Hotel{" +
                 "hotelName='" + hotelName + '\'' +
-                ", weekdaysRateForRegularCustomer=" + weekdaysRateForRegularCustomer +"$"+
-                ", weekendsRateForRegularCustomer=" + weekendsRateForRegularCustomer +"$"+
+                ", weekdaysRateForRegularCustomer=" + weekdaysRateForRegularCustomer + "$" +
+                ", weekendsRateForRegularCustomer=" + weekendsRateForRegularCustomer + "$" +
                 '}';
     }
+
+
+    public int rateOfHotel(List<String> list) {
+        HotelReservation hotelReservation = new HotelReservation();
+//        List<String> list = hotelReservation.toGetDay();
+//        System.out.println(list);
+
+        int sum =0;
+        for (int j = 0; j < list.size(); j++) {
+            String s = list.get(j);
+            if (s == null)
+                return 0;
+
+            if (s.equals("MONDAY") || s.equals("TUESDAY") || s.equals("WEDNESDAY") || s.equals("THURSDAY") || s.equals("FRIDAY")) {
+                sum = sum + this.weekdaysRateForRegularCustomer;
+
+            } else {
+                sum = sum + this.weekendsRateForRegularCustomer;
+
+            }
+        }
+        return sum;
+
+    }
+
 }
