@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class HotelReservation {
@@ -58,18 +59,52 @@ public class HotelReservation {
                 case "Ridgewood" -> sum3 = hotel.rateOfHotel(list);
             }
         }
-
-        if (sum1<sum2 && sum1<sum3){
-            System.out.println("\nThis Rate is for Hotel Lakewood");
-            System.out.println("Minimum Rates :- "+sum1+"$");
-        }else  if (sum2<sum1 && sum2<sum3){
-            System.out.println("\nThis Rate is for Hotel Bridgewood");
-            System.out.println("Minimum Rates :- "+sum2+"$");
+        Random random = new Random();
+        int check = random.nextInt(0,3);
+        if (check==1){
+            System.out.println("\nHotel Lakewood is not Avaliable for this Dates");
+            if (sum2<sum3){
+                System.out.println("This Rate is for Hotel Bridgewood");
+                System.out.println("Minimum Rates :- "+sum2+"$");
+            }else {
+                System.out.println("This Rate is for Hotel Ridgewood");
+                System.out.println("Minimum Rates :- "+sum3+"$");
+            }
+        }else if (check==2){
+            System.out.println("\nHotel Bridgewood is not Avaliable for this Dates");
+            if (sum1<sum3){
+                System.out.println("This Rate is for Hotel Lakewood");
+                System.out.println("Minimum Rates :- "+sum1+"$");
+            }else {
+                System.out.println("This Rate is for Hotel Ridgewood");
+                System.out.println("Minimum Rates :- "+sum3+"$");
+            }
         }else {
-            System.out.println("\nThis Rate is for Hotel Ridgewood");
-            System.out.println("Minimum Rates :- "+sum3+"$");
+            System.out.println("\nHotel Ridgewood is not Avaliable for this Dates");
+            if (sum1<sum2){
+                System.out.println("This Rate is for Hotel Lakewood");
+                System.out.println("Minimum Rates :- "+sum1+"$");
+            }else {
+                System.out.println("This Rate is for Hotel Bridgewood");
+                System.out.println("Minimum Rates :- "+sum2+"$");
+            }
         }
     }
+
+    public void cheapestRated(){
+        int rating = Integer.MAX_VALUE;
+        for (Hotel hotel : hotelList) {
+            if (hotel.getHotelRate() < rating) {
+                rating = hotel.getHotelRate();
+
+            }
+        }
+
+        int finalRating = rating;
+        System.out.println();
+        hotelList.stream().filter(m -> m.getHotelRate()== finalRating).forEach(System.out::println);
+    }
+
 
     public void printHotelList(){
         for (Hotel h : hotelList){
@@ -96,10 +131,16 @@ public class HotelReservation {
         System.out.println("List of Hotel Available");
         hotelReservation.printHotelList();
 
-
-
         hotelReservation.minimumRates(hotelReservation.toGetDay());
-        //  Finding for on one Weekday and one Weekend
-        hotelReservation.minimumRates(hotelReservation.toGetDay());
+        hotelReservation.cheapestRated();
+
     }
 }
+
+
+
+
+
+
+
+

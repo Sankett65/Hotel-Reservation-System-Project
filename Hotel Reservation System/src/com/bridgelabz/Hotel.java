@@ -15,6 +15,7 @@ public class Hotel {
         this.weekendsRateForRegularCustomer = weekendsRateForRegularCustomer;
     }
 
+
     public int getHotelRate() {
         return hotelRate;
     }
@@ -59,7 +60,6 @@ public class Hotel {
 
 
     public int rateOfHotel(List<String> list) {
-        HotelReservation hotelReservation = new HotelReservation();
         int sum =0;
         for (int j = 0; j < list.size(); j++) {
             String s = list.get(j);
