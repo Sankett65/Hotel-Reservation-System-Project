@@ -96,6 +96,7 @@ public class HotelReservation {
         System.out.println("List of Hotel Available");
         hotelReservation.printHotelList();
 
+        System.out.println();
         hotelReservation.minimumRates(hotelReservation.toGetDay());
     }
 }
