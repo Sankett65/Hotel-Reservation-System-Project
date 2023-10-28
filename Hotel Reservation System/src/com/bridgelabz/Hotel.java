@@ -4,16 +4,12 @@ import java.util.List;
 
 public class Hotel {
     private String hotelName;
-    private int weekdaysRateForRegularCustomer;
-    private int weekendsRateForRegularCustomer;
+    private int rateForRegularCustomer;
 
-    public Hotel(String hotelName, int weekdaysRateForRegularCustomer, int weekendsRateForRegularCustomer) {
+
+    public Hotel(String hotelName, int rateForRegularCustomer) {
         this.hotelName = hotelName;
-        this.weekdaysRateForRegularCustomer = weekdaysRateForRegularCustomer;
-        this.weekendsRateForRegularCustomer = weekendsRateForRegularCustomer;
-    }
-
-    public Hotel() {
+        this.rateForRegularCustomer = rateForRegularCustomer;
 
     }
 
@@ -26,47 +22,32 @@ public class Hotel {
     }
 
     public int getWeekdaysRateForRegularCustomer() {
-        return weekdaysRateForRegularCustomer;
+        return rateForRegularCustomer;
     }
 
     public void setWeekdaysRateForRegularCustomer(int weekdaysRateForRegularCustomer) {
-        this.weekdaysRateForRegularCustomer = weekdaysRateForRegularCustomer;
-    }
-
-    public int getWeekendsRateForRegularCustomer() {
-        return weekendsRateForRegularCustomer;
-    }
-
-    public void setWeekendsRateForRegularCustomer(int weekendsRateForRegularCustomer) {
-        this.weekendsRateForRegularCustomer = weekendsRateForRegularCustomer;
+        this.rateForRegularCustomer = weekdaysRateForRegularCustomer;
     }
 
     @Override
     public String toString() {
         return "Hotel{" +
                 "hotelName='" + hotelName + '\'' +
-                ", weekdaysRateForRegularCustomer=" + weekdaysRateForRegularCustomer + "$" +
-                ", weekendsRateForRegularCustomer=" + weekendsRateForRegularCustomer + "$" +
+                ", RateForRegularCustomer=" + rateForRegularCustomer + "$" +
+
                 '}';
     }
 
 
     public int rateOfHotel(List<String> list) {
         HotelReservation hotelReservation = new HotelReservation();
-//        List<String> list = hotelReservation.toGetDay();
-//        System.out.println(list);
-
         int sum =0;
-        for (int j = 0; j < list.size(); j++) {
-            String s = list.get(j);
+        for (String s : list) {
             if (s == null)
                 return 0;
 
             if (s.equals("MONDAY") || s.equals("TUESDAY") || s.equals("WEDNESDAY") || s.equals("THURSDAY") || s.equals("FRIDAY")) {
-                sum = sum + this.weekdaysRateForRegularCustomer;
-
-            } else {
-                sum = sum + this.weekendsRateForRegularCustomer;
+                sum = sum + this.rateForRegularCustomer;
 
             }
         }
