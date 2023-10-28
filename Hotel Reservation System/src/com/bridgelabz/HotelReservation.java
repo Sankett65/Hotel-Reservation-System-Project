@@ -96,7 +96,10 @@ public class HotelReservation {
         System.out.println("List of Hotel Available");
         hotelReservation.printHotelList();
 
-        System.out.println();
+
+
+        hotelReservation.minimumRates(hotelReservation.toGetDay());
+        //  Finding for on one Weekday and one Weekend
         hotelReservation.minimumRates(hotelReservation.toGetDay());
     }
 }
