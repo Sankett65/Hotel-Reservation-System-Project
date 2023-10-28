@@ -4,17 +4,23 @@ import java.util.List;
 
 public class Hotel {
     private String hotelName;
+    private int hotelRate;
     private int weekdaysRateForRegularCustomer;
     private int weekendsRateForRegularCustomer;
 
-    public Hotel(String hotelName, int weekdaysRateForRegularCustomer, int weekendsRateForRegularCustomer) {
+    public Hotel(String hotelName,int hotelRate, int weekdaysRateForRegularCustomer, int weekendsRateForRegularCustomer) {
         this.hotelName = hotelName;
+        this.hotelRate = hotelRate;
         this.weekdaysRateForRegularCustomer = weekdaysRateForRegularCustomer;
         this.weekendsRateForRegularCustomer = weekendsRateForRegularCustomer;
     }
 
-    public Hotel() {
+    public int getHotelRate() {
+        return hotelRate;
+    }
 
+    public void setHotelRate(int hotelRate) {
+        this.hotelRate = hotelRate;
     }
 
     public String getHotelName() {
@@ -45,6 +51,7 @@ public class Hotel {
     public String toString() {
         return "Hotel{" +
                 "hotelName='" + hotelName + '\'' +
+                ", hotel Rate=" + hotelRate +
                 ", weekdaysRateForRegularCustomer=" + weekdaysRateForRegularCustomer + "$" +
                 ", weekendsRateForRegularCustomer=" + weekendsRateForRegularCustomer + "$" +
                 '}';
