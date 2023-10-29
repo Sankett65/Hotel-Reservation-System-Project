@@ -92,6 +92,7 @@ public class HotelReservation {
     }
 
     public void cheapestRated(){
+        System.out.println("\nCheapest Rated Hotel is :- ");
         int rating = Integer.MAX_VALUE;
         for (Hotel hotel : hotelList) {
             if (hotel.getHotelRate() < rating) {
@@ -101,12 +102,12 @@ public class HotelReservation {
         }
 
         int finalRating = rating;
-        System.out.println();
         hotelList.stream().filter(m -> m.getHotelRate()== finalRating).forEach(System.out::println);
     }
 
 
     public void bestRated(){
+        System.out.println("\nBest Rated Hotel is :- ");
         int rating = Integer.MIN_VALUE;
         for (Hotel hotel : hotelList) {
             if (hotel.getHotelRate() > rating) {
@@ -116,7 +117,6 @@ public class HotelReservation {
         }
 
         int finalRating = rating;
-        System.out.println();
         hotelList.stream().filter(m -> m.getHotelRate()== finalRating).forEach(System.out::println);
     }
 
@@ -134,9 +134,9 @@ public class HotelReservation {
 
         HotelReservation hotelReservation = new HotelReservation();
 
-        Hotel hotel1= new Hotel("Lakewood",3,110,90);
-        Hotel hotel2= new Hotel("Bridgewood",4,160,150);
-        Hotel hotel3= new Hotel("Ridgewood",5,220,150);
+        Hotel hotel1= new Hotel("Lakewood",3,110,90,80,80);
+        Hotel hotel2= new Hotel("Bridgewood",4,160,150,110,50);
+        Hotel hotel3= new Hotel("Ridgewood",5,220,150,100,40);
 
         //   Adding the Hotels to Hotel Reservation Class
         hotelReservation.addHotel(hotel1);
