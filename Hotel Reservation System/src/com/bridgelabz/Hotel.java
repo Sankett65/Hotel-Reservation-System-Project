@@ -69,6 +69,7 @@ public class Hotel {
         this.weekendsRateForRewardedCustomer = weekendsRateForRewardedCustomer;
     }
 
+
     @Override
     public String toString() {
         return "Hotel{" +
@@ -81,7 +82,7 @@ public class Hotel {
                 '}';
     }
 
-    public int rateOfHotel(List<String> list) {
+    public int rateOfHotel(int i ,List<String> list) {
         int sum =0;
         for (int j = 0; j < list.size(); j++) {
             String s = list.get(j);
@@ -89,10 +90,19 @@ public class Hotel {
                 return 0;
 
             if (s.equals("MONDAY") || s.equals("TUESDAY") || s.equals("WEDNESDAY") || s.equals("THURSDAY") || s.equals("FRIDAY")) {
-                sum = sum + this.weekdaysRateForRegularCustomer;
+                if (i==1) {
+                    sum = sum + this.weekdaysRateForRegularCustomer;
+                }else {
+                    sum= sum+ this.weekdaysRateForRewardedCustomer;
+                }
 
             } else {
-                sum = sum + this.weekendsRateForRegularCustomer;
+                if (i==1) {
+                    sum = sum + this.weekendsRateForRegularCustomer;
+                }else {
+                    sum = sum + this.weekendsRateForRewardedCustomer;
+
+                }
 
             }
         }

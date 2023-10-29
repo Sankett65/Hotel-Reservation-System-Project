@@ -15,7 +15,7 @@ public class HotelReservation {
         hotelList.add(hotel);
     }
 
-    public List<String> toGetDay(){
+    public List<String> toGetDay() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("\nEnter the Starting Date in YYYY-MM-DD");
@@ -36,27 +36,40 @@ public class HotelReservation {
 
         LocalDate Startdate1=LocalDate.of(year,month,day);
         LocalDate Enddate1=LocalDate.of(year1,month1,day1);
-
-        long numOfDaysBetween = ChronoUnit.DAYS.between (Startdate1, Enddate1)+1;
+        System.out.println("\nFinding the best Hotel from "+Startdate1+" to "+Enddate1+" :- ");
         List<String> list= new ArrayList<>();
-        for (int i =0;i<numOfDaysBetween;i++){
-            list.add(String.valueOf(Startdate1.plusDays(i).getDayOfWeek()));
 
-        }
+        int a = Startdate1.compareTo(Enddate1);
 
+    try {
+        if (a>0){
+            throw new DateCannotBeZero("Ending Date should be greater than Starting Date");
+        }else {
+               long numOfDaysBetween = ChronoUnit.DAYS.between(Startdate1, Enddate1);
+               numOfDaysBetween = numOfDaysBetween + 1;
+               for (int i = 0; i < numOfDaysBetween; i++) {
+                   list.add(String.valueOf(Startdate1.plusDays(i).getDayOfWeek()));
+
+               }
+           }
         return list;
+    }catch (Exception e){
+        System.out.println(e);
+    }
+    return list;
+
     }
 
 
-    public void minimumRates(List<String> list){
+    public void minimumRates(int i,List<String> list){
         int sum1=0;
         int sum2=0;
         int sum3=0;
         for (Hotel hotel : hotelList) {
             switch (hotel.getHotelName()) {
-                case "Lakewood" -> sum1 = hotel.rateOfHotel(list);
-                case "Bridgewood" -> sum2 = hotel.rateOfHotel(list);
-                case "Ridgewood" -> sum3 = hotel.rateOfHotel(list);
+                case "Lakewood" -> sum1 = hotel.rateOfHotel(i,list);
+                case "Bridgewood" -> sum2 = hotel.rateOfHotel(i,list);
+                case "Ridgewood" -> sum3 = hotel.rateOfHotel(i,list);
             }
         }
         Random random = new Random();
@@ -64,35 +77,35 @@ public class HotelReservation {
         if (check==1){
             System.out.println("\nHotel Lakewood is not Avaliable for this Dates");
             if (sum2<sum3){
-                System.out.println("This Rate is for Hotel Bridgewood");
-                System.out.println("Minimum Rates :- "+sum2+"$");
+                System.out.println("This Rate is for Hotel Bridgewood is the ");
+                System.out.println( "Rates :- "+sum2+"$");
             }else {
                 System.out.println("This Rate is for Hotel Ridgewood");
-                System.out.println("Minimum Rates :- "+sum3+"$");
+                System.out.println("Rates :- "+sum3+"$");
             }
         }else if (check==2){
             System.out.println("\nHotel Bridgewood is not Avaliable for this Dates");
             if (sum1<sum3){
                 System.out.println("This Rate is for Hotel Lakewood");
-                System.out.println("Minimum Rates :- "+sum1+"$");
+                System.out.println("Rates :- "+sum1+"$");
             }else {
                 System.out.println("This Rate is for Hotel Ridgewood");
-                System.out.println("Minimum Rates :- "+sum3+"$");
+                System.out.println("Rates :- "+sum3+"$");
             }
         }else {
             System.out.println("\nHotel Ridgewood is not Avaliable for this Dates");
             if (sum1<sum2){
                 System.out.println("This Rate is for Hotel Lakewood");
-                System.out.println("Minimum Rates :- "+sum1+"$");
+                System.out.println("Rates :- "+sum1+"$");
             }else {
                 System.out.println("This Rate is for Hotel Bridgewood");
-                System.out.println("Minimum Rates :- "+sum2+"$");
+                System.out.println("Rates :- "+sum2+"$");
             }
         }
     }
 
     public void cheapestRated(){
-        System.out.println("\nCheapest Rated Hotel is :- ");
+        System.out.println("\nCheapest Rated Hotel :- ");
         int rating = Integer.MAX_VALUE;
         for (Hotel hotel : hotelList) {
             if (hotel.getHotelRate() < rating) {
@@ -107,7 +120,7 @@ public class HotelReservation {
 
 
     public void bestRated(){
-        System.out.println("\nBest Rated Hotel is :- ");
+        System.out.println("\nBest Rated Hotel :- ");
         int rating = Integer.MIN_VALUE;
         for (Hotel hotel : hotelList) {
             if (hotel.getHotelRate() > rating) {
@@ -129,7 +142,7 @@ public class HotelReservation {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         System.out.println("Welcome to Hotel Reservation Program");
 
         HotelReservation hotelReservation = new HotelReservation();
@@ -146,10 +159,17 @@ public class HotelReservation {
         System.out.println("List of Hotel Available");
         hotelReservation.printHotelList();
 
-        hotelReservation.minimumRates(hotelReservation.toGetDay());
-      
-        hotelReservation.cheapestRated();
-        hotelReservation.bestRated();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("""
+                \nEnter 1 if you are a Regular Customer
+                Enter 2 if you are a Reward Customer""");
+
+        System.out.print("Enter your Option :- ");
+        int option = sc.nextInt();
+
+            hotelReservation.minimumRates(option,hotelReservation.toGetDay());
+
+
 
     }
 }
