@@ -170,6 +170,7 @@ public class HotelReservation {
             hotelReservation.minimumRates(option,hotelReservation.toGetDay());
 
 
+
     }
 }
 
