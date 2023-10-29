@@ -7,14 +7,19 @@ public class Hotel {
     private int hotelRate;
     private int weekdaysRateForRegularCustomer;
     private int weekendsRateForRegularCustomer;
+    private int weekdaysRateForRewardedCustomer;
+    private int weekendsRateForRewardedCustomer;
 
-    public Hotel(String hotelName,int hotelRate, int weekdaysRateForRegularCustomer, int weekendsRateForRegularCustomer) {
+
+    public Hotel(String hotelName, int hotelRate, int weekdaysRateForRegularCustomer,
+                 int weekendsRateForRegularCustomer, int weekdaysRateForRewardedCustomer, int weekendsRateForRewardedCustomer) {
         this.hotelName = hotelName;
         this.hotelRate = hotelRate;
         this.weekdaysRateForRegularCustomer = weekdaysRateForRegularCustomer;
         this.weekendsRateForRegularCustomer = weekendsRateForRegularCustomer;
+        this.weekdaysRateForRewardedCustomer = weekdaysRateForRewardedCustomer;
+        this.weekendsRateForRewardedCustomer = weekendsRateForRewardedCustomer;
     }
-
 
     public int getHotelRate() {
         return hotelRate;
@@ -48,16 +53,33 @@ public class Hotel {
         this.weekendsRateForRegularCustomer = weekendsRateForRegularCustomer;
     }
 
+    public int getWeekdaysRateForRewardedCustomer() {
+        return weekdaysRateForRewardedCustomer;
+    }
+
+    public void setWeekdaysRateForRewardedCustomer(int weekdaysRateForRewardedCustomer) {
+        this.weekdaysRateForRewardedCustomer = weekdaysRateForRewardedCustomer;
+    }
+
+    public int getWeekendsRateForRewardedCustomer() {
+        return weekendsRateForRewardedCustomer;
+    }
+
+    public void setWeekendsRateForRewardedCustomer(int weekendsRateForRewardedCustomer) {
+        this.weekendsRateForRewardedCustomer = weekendsRateForRewardedCustomer;
+    }
+
     @Override
     public String toString() {
         return "Hotel{" +
                 "hotelName='" + hotelName + '\'' +
-                ", hotel Rate=" + hotelRate +
-                ", weekdaysRateForRegularCustomer=" + weekdaysRateForRegularCustomer + "$" +
-                ", weekendsRateForRegularCustomer=" + weekendsRateForRegularCustomer + "$" +
+                ", hotelRate=" + hotelRate +
+                ", weekdaysRateForRegularCustomer=" + weekdaysRateForRegularCustomer +
+                ", weekendsRateForRegularCustomer=" + weekendsRateForRegularCustomer +
+                ", weekdaysRateForRewardedCustomer=" + weekdaysRateForRewardedCustomer +
+                ", weekendsRateForRewardedCustomer=" + weekendsRateForRewardedCustomer +
                 '}';
     }
-
 
     public int rateOfHotel(List<String> list) {
         int sum =0;
