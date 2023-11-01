@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Hotel {
     private String hotelName;
-    private int hotelRate;
+    private double hotelRate;
     private int weekdaysRateForRegularCustomer;
     private int weekendsRateForRegularCustomer;
     private int weekdaysRateForRewardedCustomer;
     private int weekendsRateForRewardedCustomer;
 
 
-    public Hotel(String hotelName, int hotelRate, int weekdaysRateForRegularCustomer,
+    public Hotel(String hotelName, double hotelRate, int weekdaysRateForRegularCustomer,
                  int weekendsRateForRegularCustomer, int weekdaysRateForRewardedCustomer, int weekendsRateForRewardedCustomer) {
         this.hotelName = hotelName;
         this.hotelRate = hotelRate;
@@ -21,11 +21,11 @@ public class Hotel {
         this.weekendsRateForRewardedCustomer = weekendsRateForRewardedCustomer;
     }
 
-    public int getHotelRate() {
+    public double getHotelRate() {
         return hotelRate;
     }
 
-    public void setHotelRate(int hotelRate) {
+    public void setHotelRate(double hotelRate) {
         this.hotelRate = hotelRate;
     }
 
@@ -95,19 +95,14 @@ public class Hotel {
                 }else {
                     sum= sum+ this.weekdaysRateForRewardedCustomer;
                 }
-
             } else {
                 if (i==1) {
                     sum = sum + this.weekendsRateForRegularCustomer;
                 }else {
                     sum = sum + this.weekendsRateForRewardedCustomer;
-
                 }
-
             }
         }
         return sum;
-
     }
-
 }

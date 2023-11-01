@@ -2,10 +2,9 @@ package com.bridgelabz;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
+
 
 public class HotelReservation {
 
@@ -57,7 +56,6 @@ public class HotelReservation {
         System.out.println(e);
     }
     return list;
-
     }
 
 
@@ -74,64 +72,74 @@ public class HotelReservation {
         }
         Random random = new Random();
         int check = random.nextInt(0,3);
-        if (check==1){
-            System.out.println("\nHotel Lakewood is not Avaliable for this Dates");
+        if (check==0){
+            System.out.println("\nHotel Lakewood is not Available for this Dates");
             if (sum2<sum3){
-                System.out.println("This Rate is for Hotel Bridgewood is the ");
+                System.out.println("This Rate is for Hotel BridgeWood is the ");
                 System.out.println( "Rates :- "+sum2+"$");
             }else {
-                System.out.println("This Rate is for Hotel Ridgewood");
+                System.out.println("This Rate is for Hotel RidgeWood");
                 System.out.println("Rates :- "+sum3+"$");
             }
-        }else if (check==2){
-            System.out.println("\nHotel Bridgewood is not Avaliable for this Dates");
+        }else if (check==1){
+            System.out.println("\nHotel BridgeWood is not Available for this Dates");
             if (sum1<sum3){
                 System.out.println("This Rate is for Hotel Lakewood");
                 System.out.println("Rates :- "+sum1+"$");
             }else {
-                System.out.println("This Rate is for Hotel Ridgewood");
+                System.out.println("This Rate is for Hotel RidgeWood");
                 System.out.println("Rates :- "+sum3+"$");
             }
         }else {
-            System.out.println("\nHotel Ridgewood is not Avaliable for this Dates");
+            System.out.println("\nHotel RidgeWood is not Available for this Dates");
             if (sum1<sum2){
                 System.out.println("This Rate is for Hotel Lakewood");
                 System.out.println("Rates :- "+sum1+"$");
             }else {
-                System.out.println("This Rate is for Hotel Bridgewood");
+                System.out.println("This Rate is for Hotel BridgeWood");
                 System.out.println("Rates :- "+sum2+"$");
             }
         }
     }
 
-    public void cheapestRated(){
+    public void cheapestAndBestRated(){
         System.out.println("\nCheapest Rated Hotel :- ");
-        int rating = Integer.MAX_VALUE;
+        double rating = Integer.MAX_VALUE;
         for (Hotel hotel : hotelList) {
             if (hotel.getHotelRate() < rating) {
                 rating = hotel.getHotelRate();
-
             }
         }
-
-        int finalRating = rating;
+        double finalRating = rating;
         hotelList.stream().filter(m -> m.getHotelRate()== finalRating).forEach(System.out::println);
     }
 
 
     public void bestRated(){
         System.out.println("\nBest Rated Hotel :- ");
-        int rating = Integer.MIN_VALUE;
+        double rating = Integer.MIN_VALUE;
         for (Hotel hotel : hotelList) {
             if (hotel.getHotelRate() > rating) {
                 rating = hotel.getHotelRate();
-
             }
         }
-
-        int finalRating = rating;
+        double finalRating = rating;
         hotelList.stream().filter(m -> m.getHotelRate()== finalRating).forEach(System.out::println);
     }
+
+    public void cheapestRateUsingJavaSream(int option,List<String> list){
+        List<Hotel> cheapest=hotelList.stream()
+                .sorted((hotel1,hotel2) ->{
+                    int sum1 = hotel1.rateOfHotel(option,list);
+                    int sum2 = hotel2.rateOfHotel(option,list);
+                    return Integer.compare(sum1,sum2);
+                }).toList();
+        System.out.println("Hotel Name is :- "+cheapest.get(0).getHotelName());
+        System.out.println("Hotel Rating is :- "+cheapest.get(0).getHotelRate());
+        int finalRate= cheapest.get(0).rateOfHotel(option,list);
+        System.out.println("Cheapest Rent is :- "+finalRate);
+    }
+
 
 
     public void printHotelList(){
@@ -139,8 +147,6 @@ public class HotelReservation {
             System.out.println(h);
         }
     }
-
-
 
     public static void main(String[] args)  {
         System.out.println("Welcome to Hotel Reservation Program");
@@ -159,6 +165,7 @@ public class HotelReservation {
         System.out.println("List of Hotel Available");
         hotelReservation.printHotelList();
 
+     //  Checking Whether the Customer is Regular or Rewarded
         Scanner sc = new Scanner(System.in);
         System.out.println("""
                 \nEnter 1 if you are a Regular Customer
@@ -167,7 +174,10 @@ public class HotelReservation {
         System.out.print("Enter your Option :- ");
         int option = sc.nextInt();
 
-            hotelReservation.minimumRates(option,hotelReservation.toGetDay());
+
+      //  hotelReservation.minimumRates(option,hotelReservation.toGetDay());
+
+        hotelReservation.cheapestRateUsingJavaSream(option,hotelReservation.toGetDay());
 
 
 
